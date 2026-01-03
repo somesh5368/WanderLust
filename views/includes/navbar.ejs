@@ -1,60 +1,339 @@
 <style>
-  .search-btn{
-    background-color: #fe424d;
-    color: #fff;
-    border-radius: 25px;
-    padding: 0 1rem 0 1rem;
+  /* ===== NAVBAR CONTAINER ===== */
+  .navbar {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    padding: 1rem 0;
+    border: none;
   }
-  .search-btn:hover{
-    background-color: #fe424d;
-    color: #fff;
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fe424d !important;
+    transition: all 0.3s ease;
   }
-  .search-btn i {
-    display: inline;
-    margin-right: 0.5rem;
+
+  .navbar-brand:hover {
+    transform: scale(1.05);
+  }
+
+  /* ===== SEARCH BAR CONTAINER ===== */
+  .search-container {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 2rem;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .search-bar:focus-within {
+    box-shadow: 0 6px 20px rgba(254, 66, 77, 0.2);
+    border-color: #fe424d;
+  }
+
+  .search-bar i {
+    color: #fe424d;
+    font-size: 1.1rem;
   }
 
   .search-inp {
-    border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
+    border: none !important;
+    outline: none;
+    padding: 0 !important;
+    font-size: 0.95rem;
+    flex: 1;
+    background: transparent;
+    color: #333;
+  }
+
+  .search-inp::placeholder {
+    color: #999;
+  }
+
+  .search-inp:focus {
+    box-shadow: none;
+  }
+
+  .search-btn {
+    background-color: #fe424d;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .search-btn:hover {
+    background-color: #ff3344;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(254, 66, 77, 0.3);
+  }
+
+  .search-btn:active {
+    transform: scale(0.95);
+  }
+
+  .search-btn i {
+    color: white;
+    margin: 0;
     font-size: 1rem;
+  }
+
+  /* ===== NAV LINKS ===== */
+  .navbar-nav {
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    color: #333 !important;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem !important;
+    border-radius: 25px;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    background-color: #f0f0f0;
+    color: #fe424d !important;
+  }
+
+  .nav-link b {
+    font-weight: 600;
+  }
+
+  /* ===== AIRBNB HOME BUTTON ===== */
+  .airbnb-home-btn {
+    background: linear-gradient(135deg, #fe424d 0%, #ff5566 100%);
+    color: white !important;
+    border-radius: 25px;
+    padding: 0.6rem 1.2rem !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(254, 66, 77, 0.25);
+  }
+
+  .airbnb-home-btn:hover {
+    background: linear-gradient(135deg, #ff3344 0%, #ff6677 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(254, 66, 77, 0.35);
+  }
+
+  /* ===== FAVORITES ICON ===== */
+  .favorites-nav-item {
+    position: relative;
+  }
+
+  .favorites-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem !important;
+    border-radius: 25px;
+  }
+
+  .favorites-link:hover {
+    background-color: #ffe6e9;
+    color: #fe424d;
+  }
+
+  .favorites-link i {
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+  }
+
+  .favorites-link span {
+    font-weight: 500;
+  }
+
+  .favorites-badge {
+    display: inline-block;
+    background-color: #fe424d;
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-weight: 700;
+  }
+
+  /* ===== LOGIN/SIGNUP BUTTONS ===== */
+  .signup-btn {
+    color: #fe424d !important;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem !important;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+  }
+
+  .signup-btn:hover {
+    background-color: #fff0f2;
+  }
+
+  .login-btn {
+    color: #333 !important;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem !important;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+  }
+
+  .login-btn:hover {
+    background-color: #f0f0f0;
+  }
+
+  .logout-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+    color: white !important;
+    font-weight: 600;
+    padding: 0.5rem 1.2rem !important;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+  }
+
+  .logout-btn:hover {
+    background: linear-gradient(135deg, #ff5555 0%, #ff7777 100%);
+    transform: translateY(-2px);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .search-container {
+      max-width: 100%;
+      margin: 1rem 0;
+      order: 3;
+      flex-basis: 100%;
+    }
+
+    .navbar-collapse {
+      padding-top: 1rem;
+    }
+
+    .navbar-nav {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .nav-link {
+      padding: 0.75rem 1rem !important;
+    }
+
+    .search-bar {
+      padding: 0.75rem 1.2rem;
+    }
   }
 </style>
 
-
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+<nav class="navbar navbar-expand-md sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <!-- Brand/Logo -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-solid fa-fire"></i> WanderLust
+    </a>
+
+    <!-- Mobile Toggle -->
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
+      data-bs-target="#navbarContent"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <!-- Left: Explore -->
       <div class="navbar-nav">
-        <a class="nav-link" href="/listings"><b>Explore</b></a>
+        <a class="nav-link" href="/listings">
+          <i class="fa-solid fa-compass"></i> <b>Explore</b>
+        </a>
       </div>
-      <div class="nav-bar-nav ms-auto">
-        <form class="d-flex" role="search">
-          <input 
-          class="form-control me-2 search-inp"
-          type="search"
-          placeholder="Search destinations"
+
+      <!-- Center: Search Bar -->
+      <div class="search-container">
+        <form class="search-bar" role="search" action="/listings" method="GET">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            class="search-inp"
+            type="search"
+            name="search"
+            placeholder="Search destinations, listings..."
+            value="<%= locals.searchQuery || '' %>"
+            autocomplete="off"
           />
-          <button class="btn search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+          <button class="search-btn" type="submit" title="Search">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
         </form>
       </div>
 
+      <!-- Right: Links -->
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <!-- Airbnb Your Home -->
+        <a class="nav-link airbnb-home-btn" href="/listings/new">
+          <i class="fa-solid fa-plus"></i>
+          <span>Airbnb your home</span>
+        </a>
+
+        <!-- Favorites (if logged in) -->
+        <% if(currUser) { %>
+          <div class="favorites-nav-item">
+            <a class="nav-link favorites-link" href="/listings/favorites" title="My Favorites">
+              <i class="fa-solid fa-heart"></i>
+              <span>Favorites</span>
+            </a>
+          </div>
+        <% } %>
+
+        <!-- Auth Links -->
         <% if(!currUser) { %>
-        <a class="nav-link " aria-current="page" href="/signup"><b>Sign up</b></a>
-        <a class="nav-link" href="/login"><b>Log in</b></a>
-        <% } %> <% if(currUser) { %>
-        <a class="nav-link" href="/logout"> <b>Log out</b></a>
+          <a class="nav-link signup-btn" href="/signup">
+            <i class="fa-solid fa-user-plus"></i> Sign up
+          </a>
+          <a class="nav-link login-btn" href="/login">
+            <i class="fa-solid fa-sign-in-alt"></i> Log in
+          </a>
+        <% } %>
+
+        <% if(currUser) { %>
+          <div style="border-left: 1px solid #ddd; height: 24px; margin: 0 0.5rem;"></div>
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-left: 0.5rem;">
+            <i class="fa-solid fa-circle-user" style="font-size: 1.5rem; color: #fe424d;"></i>
+            <span style="font-weight: 500; color: #333;">
+              <%= currUser.username %>
+            </span>
+          </div>
+          <a class="nav-link logout-btn" href="/logout">
+            <i class="fa-solid fa-sign-out-alt"></i> Logout
+          </a>
         <% } %>
       </div>
     </div>

@@ -1,89 +1,638 @@
 <% layout("/layouts/boilerplate") %>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background: linear-gradient(135deg, #f5f5f5 0%, #e9ecef 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 50px;
+    animation: slideUp 0.5s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .form-header h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #222;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ff385c 0%, #ff1744 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .form-header p {
+    color: #666;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .form-section {
+    margin-bottom: 30px;
+  }
+
+  .section-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #222;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ff385c;
+    display: inline-block;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .form-control,
+  .form-select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    background-color: white;
+    border-color: #ff385c;
+    box-shadow: 0 0 0 3px rgba(255, 56, 92, 0.1);
+    outline: none;
+  }
+
+  .form-control::placeholder {
+    color: #bbb;
+  }
+
+  textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .file-input-wrapper input[type='file'] {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .file-input-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border: 2px dashed #ff385c;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #fff5f7 0%, #ffe4eb 100%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .file-input-label:hover {
+    border-color: #ff1744;
+    background: linear-gradient(135deg, #ffe4eb 0%, #ffccdd 100%);
+    transform: translateY(-2px);
+  }
+
+  .file-input-label.drag-over {
+    border-color: #ff1744;
+    background: linear-gradient(135deg, #ffccdd 0%, #ffb3c1 100%);
+    transform: scale(1.02);
+  }
+
+  .file-input-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    color: #ff385c;
+  }
+
+  .file-input-text {
+    text-align: center;
+  }
+
+  .file-input-text p {
+    margin: 0;
+    font-weight: 600;
+    color: #222;
+    font-size: 16px;
+  }
+
+  .file-input-text span {
+    display: block;
+    color: #999;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-row.full {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 768px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    .form-container {
+      padding: 30px 20px;
+    }
+    .form-header h2 {
+      font-size: 26px;
+    }
+  }
+
+  .form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 20px;
+    padding-right: 40px;
+  }
+
+  .form-select option {
+    padding: 8px;
+    color: #222;
+  }
+
+  .valid-feedback,
+  .invalid-feedback {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .valid-feedback {
+    color: #28a745;
+  }
+
+  .invalid-feedback {
+    color: #ff385c;
+  }
+
+  .form-control.is-invalid,
+  .form-select.is-invalid {
+    border-color: #ff385c;
+    background-color: #fff5f7;
+  }
+
+  .form-control.is-valid,
+  .form-select.is-valid {
+    border-color: #28a745;
+    background-color: #f0fdf4;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .btn {
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    flex: 1;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #ff385c 0%, #ff1744 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 56, 92, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 56, 92, 0.4);
+    background: linear-gradient(135deg, #ff1744 0%, #ff385c 100%);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-secondary {
+    background: #f0f0f0;
+    color: #222;
+    border: 2px solid #e0e0e0;
+  }
+
+  .btn-secondary:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+  }
+
+  .info-box {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+    border-left: 4px solid #ff385c;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .info-box strong {
+    color: #ff385c;
+  }
+
+  .needs-validation {
+    width: 100%;
+  }
+
+  .file-name-display {
+    margin-top: 15px;
+    padding: 12px;
+    background: #f0f0f0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #666;
+    display: none;
+    text-align: center;
+  }
+
+  .file-name-display.show {
+    display: block;
+    background: #f0fdf4;
+    border: 2px solid #28a745;
+    color: #28a745;
+  }
+
+  .file-name-display.show::before {
+    content: "✓ ";
+    font-weight: 700;
+  }
+</style>
+
 <body>
-  <div class="row">
-    <div class="col-8 offset-2 mt-3">
-      <h3>Create a New Listing</h3>
-      <form
-        method="POST"
-        action="/listings"
-        novalidate
-        class="needs-validation"
-        enctype="multipart/form-data"
-      >
-        <div class="mb-3">
-          <label for="title" class="form-label">Title:</label>
+  <div class="form-container">
+    <!-- Header -->
+    <div class="form-header">
+      <h2>🏠 Create a New Listing</h2>
+      <p>Share your property with thousands of guests</p>
+    </div>
+
+    <!-- Info Box -->
+    <div class="info-box">
+      <strong>📝 Pro Tip:</strong> Fill in all details carefully to attract more guests and get booked faster!
+    </div>
+
+    <!-- Form -->
+    <form
+      method="POST"
+      action="/listings"
+      novalidate
+      class="needs-validation"
+      enctype="multipart/form-data"
+      id="listingForm"
+    >
+      <!-- Basic Information Section -->
+      <div class="form-section">
+        <div class="section-title">📋 Basic Information</div>
+
+        <div class="form-group">
+          <label for="title" class="form-label">Property Title</label>
           <input
             type="text"
             name="listing[title]"
-            placeholder="enter title"
+            id="title"
+            placeholder="e.g., Luxury Beachfront Villa with Ocean View"
             class="form-control"
             required
           />
-          <div class="valid-feedback">Title Looks good!</div>
+          <div class="valid-feedback">✓ Title looks good!</div>
+          <div class="invalid-feedback">Please provide a catchy title</div>
         </div>
-        <div class="mb-3">
-          <label for="description" class="form-label">Description:</label>
+
+        <div class="form-group">
+          <label for="description" class="form-label">Description</label>
           <textarea
-            type="text"
             name="listing[description]"
+            id="description"
             class="form-control"
-            placeholder="enter description"
+            placeholder="Describe your property in detail. Highlight unique features, amenities, and what makes it special..."
             required
           ></textarea>
-          <div class="invalid-feedback">Please enter a short description</div>
+          <div class="valid-feedback">✓ Description looks good!</div>
+          <div class="invalid-feedback">Please provide a detailed description</div>
         </div>
-        <div class="mb-3">
-          <label for="image" class="form-label">Upload Listing image:</label>
-          <input
-            type="file"
-            name="listing[image]"
-            class="form-control"
-            required
-          />
-        </div>
-        <div class="row">
-          <div class="mb-3 col-md-4">
-            <label for="price" class="form-label">Price:</label>
+      </div>
+
+      <!-- Image Upload Section -->
+      <div class="form-section">
+        <div class="section-title">🖼️ Property Image</div>
+
+        <div class="form-group">
+          <div class="file-input-wrapper">
             <input
-              type="text"
+              type="file"
+              name="listing[image]"
+              id="imageInput"
               class="form-control"
-              name="listing[price]"
-              placeholder="enter price"
+              accept="image/*"
               required
             />
-            <div class="invalid-feedback">Price should be valid</div>
+            <label for="imageInput" class="file-input-label" id="fileLabel">
+              <div class="file-input-icon">📸</div>
+              <div class="file-input-text">
+                <p>Click to upload or drag and drop</p>
+                <span>PNG, JPG or GIF (Max 5MB)</span>
+              </div>
+            </label>
+            <div class="file-name-display" id="fileDisplay"></div>
           </div>
-          <div class="col-8">
-            <div class="mb-3">
-              <label for="country" class="form-label">Country:</label>
-              <input
-                type="text"
-                name="listing[country]"
-                placeholder="enter country"
-                class="form-control"
-                required
-              />
-              <div class="invalid-feedback">Country name should be valid</div>
-            </div>
+          <div class="invalid-feedback d-block mt-2">Please upload a valid image file</div>
+        </div>
+      </div>
+
+      <!-- Location Section -->
+      <div class="form-section">
+        <div class="section-title">📍 Location Details</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="country" class="form-label">Country</label>
+            <input
+              type="text"
+              name="listing[country]"
+              id="country"
+              placeholder="e.g., India"
+              class="form-control"
+              required
+            />
+            <div class="valid-feedback">✓ Country looks good!</div>
+            <div class="invalid-feedback">Please provide a country</div>
           </div>
-          <div class="mb-3">
-            <label for="location" class="form-label">Location:</label>
+
+          <div class="form-group">
+            <label for="location" class="form-label">City/Region</label>
             <input
               type="text"
               class="form-control"
               name="listing[location]"
-              placeholder="enter location"
+              id="location"
+              placeholder="e.g., Mumbai, Goa, Kerala"
               required
             />
-            <div class="invalid-feedback">Location should be valid</div>
+            <div class="valid-feedback">✓ Location looks good!</div>
+            <div class="invalid-feedback">Please provide a location</div>
           </div>
         </div>
+      </div>
 
-        <br /><br />
-        <div>
-          <button class="btn btn-dark add-btn offset-4">Add</button>
+      <!-- Pricing & Category Section -->
+      <div class="form-section">
+        <div class="section-title">💰 Pricing & Category</div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="price" class="form-label">Price per Night (₹)</label>
+            <input
+              type="number"
+              class="form-control"
+              name="listing[price]"
+              id="price"
+              placeholder="e.g., 5000"
+              min="0"
+              step="100"
+              required
+            />
+            <div class="valid-feedback">✓ Price looks good!</div>
+            <div class="invalid-feedback">Please provide a valid price</div>
+          </div>
+
+          <div class="form-group">
+            <label for="category" class="form-label">Category</label>
+            <select
+              class="form-select"
+              id="category"
+              name="listing[category]"
+              required
+            >
+              <option value="">Select a Category</option>
+              <option value="Trending">⭐ Trending</option>
+              <option value="Rooms">🛏️ Rooms</option>
+              <option value="Iconic cities">🏙️ Iconic Cities</option>
+              <option value="Mountains">⛰️ Mountains</option>
+                            <option value="Castles">🏰 Castles</option>
+              <option value="Amazing Pools">🏊 Amazing Pools</option>
+              <option value="Camping">⛺ Camping</option>
+              <option value="Farms">🌾 Farms</option>
+              <option value="Arctic">❄️ Arctic</option>
+              <option value="Dome">🔵 Dome</option>
+            </select>
+            <div class="valid-feedback">✓ Category looks good!</div>
+            <div class="invalid-feedback">Please select a category</div>
+          </div>
         </div>
-      </form>
-    </div>
+      </div>
+
+      <!-- Submit Buttons -->
+      <div class="button-group">
+        <button type="reset" class="btn btn-secondary">🔄 Clear Form</button>
+        <button type="submit" class="btn btn-primary">✨ Publish Listing</button>
+      </div>
+    </form>
   </div>
+
+  <script>
+    // Form Validation
+    (function () {
+      'use strict';
+      window.addEventListener('load', function () {
+        let forms = document.querySelectorAll('.needs-validation');
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      });
+    })();
+
+    // File Input Handling
+    const imageInput = document.getElementById('imageInput');
+    const fileLabel = document.getElementById('fileLabel');
+    const fileDisplay = document.getElementById('fileDisplay');
+
+    // Handle file selection
+    imageInput.addEventListener('change', function (e) {
+      handleFileSelect(e);
+    });
+
+    // Handle drag and drop
+    fileLabel.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      fileLabel.classList.add('drag-over');
+    });
+
+    fileLabel.addEventListener('dragleave', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      fileLabel.classList.remove('drag-over');
+    });
+
+    fileLabel.addEventListener('drop', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      fileLabel.classList.remove('drag-over');
+      
+      if (e.dataTransfer.files.length) {
+        imageInput.files = e.dataTransfer.files;
+        handleFileSelect({ target: { files: e.dataTransfer.files } });
+      }
+    });
+
+    function handleFileSelect(e) {
+      const files = e.target.files;
+      
+      if (files.length === 0) {
+        fileDisplay.classList.remove('show');
+        return;
+      }
+
+      const file = files;
+      const maxSize = 5 * 1024 * 1024; // 5MB
+
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        fileDisplay.innerHTML = '❌ Please upload a valid image file';
+        fileDisplay.classList.add('show');
+        imageInput.value = '';
+        return;
+      }
+
+      // Validate file size
+      if (file.size > maxSize) {
+        fileDisplay.innerHTML = '❌ File size exceeds 5MB limit';
+        fileDisplay.classList.add('show');
+        imageInput.value = '';
+        return;
+      }
+
+      // Display file name and success message
+      fileDisplay.innerHTML = file.name;
+      fileDisplay.classList.add('show');
+      
+      // Update label background color to indicate successful selection
+      fileLabel.style.background = 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)';
+      fileLabel.style.borderColor = '#28a745';
+    }
+
+    // Clear file display when form is reset
+    document.getElementById('listingForm').addEventListener('reset', function () {
+      fileDisplay.classList.remove('show');
+      fileLabel.style.background = '';
+      fileLabel.style.borderColor = '';
+    });
+
+    // Real-time validation feedback
+    const inputs = document.querySelectorAll('.form-control, .form-select');
+    inputs.forEach(input => {
+      input.addEventListener('blur', function () {
+        if (this.checkValidity()) {
+          this.classList.remove('is-invalid');
+          this.classList.add('is-valid');
+        } else {
+          this.classList.remove('is-valid');
+          this.classList.add('is-invalid');
+        }
+      });
+
+      input.addEventListener('input', function () {
+        if (this.value && this.checkValidity()) {
+          this.classList.remove('is-invalid');
+          this.classList.add('is-valid');
+        } else if (this.value) {
+          this.classList.add('is-invalid');
+          this.classList.remove('is-valid');
+        } else {
+          this.classList.remove('is-valid', 'is-invalid');
+        }
+      });
+    });
+
+    // Smooth button animation on click
+    const submitBtn = document.querySelector('.btn-primary');
+    submitBtn.addEventListener('click', function (e) {
+      if (document.getElementById('listingForm').checkValidity() === false) {
+        e.preventDefault();
+      } else {
+        this.style.opacity = '0.8';
+        setTimeout(() => {
+          this.style.opacity = '1';
+        }, 100);
+      }
+    });
+  </script>
 </body>
+

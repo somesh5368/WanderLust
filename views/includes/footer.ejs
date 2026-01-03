@@ -1,14 +1,39 @@
-<footer>
-    <div class="f-info">
-        <div class="f-info-socials">
-            <i class="fa-brands fa-square-facebook"></i>
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-linkedin"></i>
-        </div>
-        <div class="f-info-brand">&copy; Wanderlust Private Limited</div>
-        <div class="f-info-links">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-        </div>
+<footer class="main-footer mt-5">
+  <div class="f-info container">
+    <!-- Social icons -->
+    <div class="f-info-socials">
+      <a
+        href="https://www.linkedin.com/in/pandeysomesh/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+      >
+        <i class="fa-brands fa-linkedin"></i>
+      </a>
+      <a
+        href="https://x.com/Hey_Somesh"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="X (Twitter)"
+      >
+        <i class="fa-brands fa-x-twitter"></i>
+      </a>
     </div>
+
+    <!-- Brand text -->
+    <div class="f-info-brand">
+      &copy; <%= new Date().getFullYear() %> Wanderlust Private Limited
+    </div>
+
+    <!-- Privacy / Terms buttons open modal -->
+    <div class="f-info-links">
+      <button type="button" class="footer-link-btn" id="openPrivacy">
+        Privacy
+      </button>
+      <span class="dot">•</span>
+      <button type="button" class="footer-link-btn" id="openTerms">
+        Terms
+      </button>
+    </div>
+  </div>
 </footer>
