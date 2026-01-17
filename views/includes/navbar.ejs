@@ -223,6 +223,16 @@
     transform: translateY(-2px);
   }
 
+  /* Collapse background: mobile open */
+  .navbar-collapse {
+    background-color: transparent;
+  }
+
+  .navbar-collapse.show {
+    background-color: #ffffff;
+    padding-bottom: 0.6rem;
+  }
+
   /* ===== RESPONSIVE ===== */
   @media (max-width: 768px) {
     .search-container {
@@ -234,6 +244,14 @@
 
     .navbar-collapse {
       padding-top: 1rem;
+    }
+
+    .navbar-collapse.show .mobile-menu-stack {
+      margin-top: 0.5rem;
+    }
+
+    .navbar-nav.desktop-right {
+      display: none; /* right side ka original block mobile pe hide */
     }
 
     .navbar-nav {
@@ -295,8 +313,8 @@
         </form>
       </div>
 
-      <!-- Right: Links -->
-      <div class="navbar-nav ms-auto">
+      <!-- Right: ORIGINAL desktop navbar (unchanged) -->
+      <div class="navbar-nav ms-auto desktop-right">
         <!-- Airbnb Your Home -->
         <a class="nav-link airbnb-home-btn" href="/listings/new">
           <i class="fa-solid fa-plus"></i>
@@ -333,6 +351,31 @@
           </div>
           <a class="nav-link logout-btn" href="/logout">
             <i class="fa-solid fa-sign-out-alt"></i> Logout
+          </a>
+        <% } %>
+      </div>
+
+      <!-- MOBILE STACKED MENU (sirf mobile pe, design clean) -->
+      <div class="w-100 d-md-none mobile-menu-stack">
+        <a class="btn w-100 mb-2 airbnb-home-btn" href="/listings/new">
+          <i class="fa-solid fa-plus me-2"></i> Airbnb your home
+        </a>
+
+        <% if(!currUser) { %>
+          <a class="btn w-100 mb-2 btn-outline-secondary" href="/signup">
+            <i class="fa-solid fa-user-plus me-2"></i> Sign up
+          </a>
+          <a class="btn w-100 mb-2 btn-outline-secondary" href="/login">
+            <i class="fa-solid fa-sign-in-alt me-2"></i> Log in
+          </a>
+        <% } %>
+
+        <% if(currUser) { %>
+          <a class="btn w-100 mb-2 btn-outline-secondary" href="/listings/favorites">
+            <i class="fa-solid fa-heart me-2"></i> Favorites
+          </a>
+          <a class="btn w-100 mb-2 btn-outline-danger" href="/logout">
+            <i class="fa-solid fa-sign-out-alt me-2"></i> Logout
           </a>
         <% } %>
       </div>

@@ -1,14 +1,28 @@
 <% layout("/layouts/boilerplate") %>
 
 <style>
+  .filters-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox: hide bar */
+  }
+
+  .filters-wrapper::-webkit-scrollbar {
+    height: 0; /* Chrome/Safari/Edge: hide bar */
+  }
+
+  .filters-wrapper::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+
   #filters {
-    display: flex;
-    flex-wrap: wrap;
+    display: inline-flex;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 1.5rem;
-    padding: 2rem 0;
+    padding: 1.2rem 0 1.2rem 0.25rem;
     border-bottom: 1px solid #e0e0e0;
-    overflow-x: auto;
   }
 
   .filter {
@@ -19,6 +33,7 @@
     transition: all 0.3s ease;
     min-width: 60px;
     border-radius: 0.5rem;
+    flex-shrink: 0;
   }
 
   .filter:hover {
@@ -46,15 +61,17 @@
   .tax-toggle {
     border: 1px solid #ddd;
     border-radius: 1.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
     display: flex;
     align-items: center;
-    margin-left: auto;
+    margin-left: 0.5rem;
+    background-color: #fff;
+    flex-shrink: 0;
   }
 
   .tax-toggle label {
-    margin: 0;
-    font-size: 0.9rem;
+    margin: 0 0 0 0.4rem;
+    font-size: 0.8rem;
   }
 
   .listing-link {
@@ -104,25 +121,25 @@
 
   .listing-card {
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.8rem;
     overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     height: 100%;
   }
 
   .listing-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
   }
 
   .card-img-top {
-    height: 250px;
+    height: 230px;
     object-fit: cover;
   }
 
   .card-body {
-    padding: 1rem;
+    padding: 0.9rem 1rem 1.1rem;
   }
 
   .card-body .card-text {
@@ -146,69 +163,76 @@
     color: #ccc;
     margin-bottom: 1rem;
   }
+
+  @media (max-width: 576px) {
+    .card-img-top {
+      height: 200px;
+    }
+  }
 </style>
 
-<!-- FILTER SECTION -->
-<div id="filters">
-  <div class="filter" data-category="Trending">
-    <i class="fa-solid fa-fire"></i>
-    <p>Trending</p>
-  </div>
-  <div class="filter" data-category="Rooms">
-    <i class="fa-solid fa-bed"></i>
-    <p>Rooms</p>
-  </div>
-  <div class="filter" data-category="Iconic cities">
-    <i class="fa-solid fa-mountain-city"></i>
-    <p>Iconic cities</p>
-  </div>
-  <div class="filter" data-category="Mountains">
-    <i class="fa-solid fa-mountain-sun"></i>
-    <p>Mountains</p>
-  </div>
-  <div class="filter" data-category="Castles">
-    <i class="fa-brands fa-fort-awesome"></i>
-    <p>Castles</p>
-  </div>
-  <div class="filter" data-category="Amazing Pools">
-    <i class="fa-solid fa-person-swimming"></i>
-    <p>Amazing Pools</p>
-  </div>
-  <div class="filter" data-category="Camping">
-    <i class="fa-solid fa-tent"></i>
-    <p>Camping</p>
-  </div>
-  <div class="filter" data-category="Farms">
-    <i class="fa-solid fa-cow"></i>
-    <p>Farms</p>
-  </div>
-  <div class="filter" data-category="Arctic">
-    <i class="fa-regular fa-snowflake"></i>
-    <p>Arctic</p>
-  </div>
-  <div class="filter" data-category="Dome">
-    <i class="fa-solid fa-igloo"></i>
-    <p>Dome</p>
-  </div>
+<!-- FILTERS -->
+<div class="filters-wrapper">
+  <div id="filters">
+    <div class="filter" data-category="Trending">
+      <i class="fa-solid fa-fire"></i>
+      <p>Trending</p>
+    </div>
+    <div class="filter" data-category="Rooms">
+      <i class="fa-solid fa-bed"></i>
+      <p>Rooms</p>
+    </div>
+    <div class="filter" data-category="Iconic cities">
+      <i class="fa-solid fa-mountain-city"></i>
+      <p>Iconic cities</p>
+    </div>
+    <div class="filter" data-category="Mountains">
+      <i class="fa-solid fa-mountain-sun"></i>
+      <p>Mountains</p>
+    </div>
+    <div class="filter" data-category="Castles">
+      <i class="fa-brands fa-fort-awesome"></i>
+      <p>Castles</p>
+    </div>
+    <div class="filter" data-category="Amazing Pools">
+      <i class="fa-solid fa-person-swimming"></i>
+      <p>Amazing Pools</p>
+    </div>
+    <div class="filter" data-category="Camping">
+      <i class="fa-solid fa-tent"></i>
+      <p>Camping</p>
+    </div>
+    <div class="filter" data-category="Farms">
+      <i class="fa-solid fa-cow"></i>
+      <p>Farms</p>
+    </div>
+    <div class="filter" data-category="Arctic">
+      <i class="fa-regular fa-snowflake"></i>
+      <p>Arctic</p>
+    </div>
+    <div class="filter" data-category="Dome">
+      <i class="fa-solid fa-igloo"></i>
+      <p>Dome</p>
+    </div>
 
-  <div class="tax-toggle">
-    <div class="form-check-reverse form-switch">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        role="switch"
-        id="flexSwitchCheckDefault"
-      />
-      <label class="form-check-label" for="flexSwitchCheckDefault">
-        Display total after Taxes
-      </label>
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch mb-0">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault">
+          Display total after Taxes
+        </label>
+      </div>
     </div>
   </div>
 </div>
-<!-- END FILTER SECTION -->
 
-<!-- LISTINGS GRID -->
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-4 mb-5">
+<!-- LISTINGS GRID: mobile 2 cards per row -->
+<div class="row row-cols-lg-3 row-cols-md-3 row-cols-2 mt-4 mb-5">
   <% if (allListings && allListings.length > 0) { %>
     <% allListings.forEach((listing) => { %>
       <div class="col mb-4">
@@ -257,25 +281,20 @@
     </div>
   <% } %>
 </div>
-<!-- END LISTINGS GRID -->
 
 <script>
-  // Tax toggle functionality
+  // Tax toggle
   const taxSwitch = document.getElementById("flexSwitchCheckDefault");
   if (taxSwitch) {
     taxSwitch.addEventListener("change", () => {
       const taxInfos = document.querySelectorAll(".tax-info");
       taxInfos.forEach((info) => {
-        if (info.style.display === "inline") {
-          info.style.display = "none";
-        } else {
-          info.style.display = "inline";
-        }
+        info.style.display = taxSwitch.checked ? "inline" : "none";
       });
     });
   }
 
-  // Heart icon toggle functionality
+  // Favorite toggle
   const heartIcons = document.querySelectorAll(".heart-icon");
 
   heartIcons.forEach((icon) => {
@@ -293,9 +312,7 @@
       try {
         const response = await fetch(`/listings/${listingId}/favorite`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
         });
 
         const data = await response.json();
@@ -320,12 +337,11 @@
     });
   });
 
-  // Filter functionality
+  // Filters
   const filters = document.querySelectorAll(".filter[data-category]");
   const urlParams = new URLSearchParams(window.location.search);
   const activeCategory = urlParams.get("category");
 
-  // Mark active filter on page load
   if (activeCategory) {
     filters.forEach((filter) => {
       if (filter.dataset.category === activeCategory) {
@@ -334,21 +350,19 @@
     });
   }
 
-  // Add click handlers to filters
   filters.forEach((filter) => {
     filter.addEventListener("click", () => {
       const category = filter.dataset.category;
       const searchParams = new URLSearchParams(window.location.search);
 
-      // Toggle filter
       if (searchParams.get("category") === category) {
         searchParams.delete("category");
       } else {
         searchParams.set("category", category);
       }
 
-      // Redirect with updated params
-      window.location.href = `/listings?${searchParams.toString()}`;
+      const query = searchParams.toString();
+      window.location.href = query ? `/listings?${query}` : "/listings";
     });
   });
 </script>

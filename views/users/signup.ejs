@@ -1,41 +1,165 @@
 <% layout("/layouts/boilerplate") %>
 
-<div class="row mt-3">
-    <h1 class="col-6 offset-3">SignUp on Wanderlust</h1>
-  <div class="col-6 offset-3">
-    <form action="/signup" method="post" class="needs-validation" novalidate>
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input
-          name="username"
-          id="username"
-          type="text"
-          class="form-control"
-          required
-        />
-        <div class="valid-feedback">Looks good!</div>
+<style>
+  .auth-wrapper {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .auth-card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+
+  .auth-header {
+    background: linear-gradient(135deg, #ff7b72 0%, #fe424d 100%);
+    color: white;
+    padding: 1.2rem 1.5rem;
+  }
+
+  .auth-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .auth-header p {
+    margin: 0.2rem 0 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+  }
+
+  .auth-body {
+    padding: 1.5rem 1.6rem 1.8rem;
+  }
+
+  .auth-body .form-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .auth-body .form-control {
+    border-radius: 0.6rem;
+  }
+
+  .auth-body .btn-primary {
+    background-color: #fe424d;
+    border-color: #fe424d;
+    border-radius: 999px;
+    font-weight: 600;
+  }
+
+  .auth-body .btn-primary:hover {
+    background-color: #ff3344;
+    border-color: #ff3344;
+  }
+
+  .auth-footer-text {
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 576px) {
+    .auth-card {
+      border-radius: 0.8rem;
+    }
+
+    .auth-body {
+      padding: 1.3rem 1.3rem 1.6rem;
+    }
+  }
+</style>
+
+<div class="auth-wrapper">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-11 col-sm-8 col-md-6 col-lg-4">
+        <div class="card auth-card">
+          <div class="auth-header">
+            <h2>Create your account</h2>
+            <p>Sign up to start booking and managing your stays.</p>
+          </div>
+          <div class="auth-body">
+            <form action="/signup" method="post" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="signup-username" class="form-label">Username</label>
+                <input
+                  name="username"
+                  id="signup-username"
+                  type="text"
+                  class="form-control"
+                  required
+                />
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please choose a username.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="signup-email" class="form-label">Email</label>
+                <input
+                  name="email"
+                  id="signup-email"
+                  type="email"
+                  class="form-control"
+                  required
+                />
+                <div class="invalid-feedback">Please enter a valid email.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="signup-password" class="form-label">Password</label>
+                <input
+                  name="password"
+                  id="signup-password"
+                  type="password"
+                  class="form-control"
+                  required
+                />
+                <div class="invalid-feedback">Please set a password.</div>
+              </div>
+
+              <button class="btn btn-primary w-100 mb-3" type="submit">
+                Sign up
+              </button>
+
+              <div class="text-center auth-footer-text">
+                <span class="text-muted">Already have an account?</span>
+                <a href="/login" class="ms-1">Login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <p class="text-center text-muted mt-3 auth-footer-text">
+          By creating an account, you agree to our Terms and Privacy Policy.
+        </p>
       </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input
-          name="email"
-          id="email"
-          type="email"
-          class="form-control"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input
-          name="password"
-          id="password"
-          type="password"
-          class="form-control"
-          required
-        />
-      </div>
-      <button class="btn btn-success">SignUp</button>
-    </form>
+    </div>
   </div>
 </div>
+
+<script>
+  (function () {
+    "use strict";
+    window.addEventListener("load", function () {
+      var forms = document.querySelectorAll(".needs-validation");
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener(
+          "submit",
+          function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    });
+  })();
+</script>

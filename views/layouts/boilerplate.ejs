@@ -1,369 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WanderLust</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WanderLust</title>
 
-  <!-- Global styles -->
-  <link rel="stylesheet" href="/css/style.css" />
+    <!-- Global styles -->
+    <link rel="stylesheet" href="/css/style.css" />
 
-  <!-- Bootstrap CSS -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-    crossorigin="anonymous"
-  />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
 
-  <!-- Font Awesome icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+    <!-- Font Awesome icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Poppins:ital,wght@0,500;1,500&family=Roboto&display=swap"
-    rel="stylesheet"
-  />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Poppins:ital,wght@0,500;1,500&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Custom rating styles -->
-  <link href="/css/rating.css" rel="stylesheet" />
+    <!-- Custom rating styles -->
+    <link href="/css/rating.css" rel="stylesheet" />
 
-  <!-- Mapbox styles -->
-  <link
-    href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
-    rel="stylesheet"
-  />
-  <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <!-- Mapbox styles -->
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 
-  <!-- Modal + footer specific styles -->
-  <style>
-    /* Basic footer layout */
-    .main-footer {
-      border-top: 1px solid #e5e5e5;
-      background-color: #f9f9f9;
-      padding: 1.2rem 0;
-      font-size: 0.9rem;
-      color: #555;
-      margin-top: 2rem;
-    }
+    <!-- Footer + modal styles (responsive) -->
+    <style>
+      .main-footer {
+        border-top: 1px solid #e5e5e5;
+        background-color: #f9f9f9;
+        padding: 1.2rem 0;
+        font-size: 0.9rem;
+        color: #555;
+        margin-top: 2rem;
+      }
 
-    .f-info {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-    }
-
-    .f-info-socials a,
-    .f-info-socials i {
-      color: #555;
-      margin-right: 0.6rem;
-      font-size: 1.3rem;
-      text-decoration: none;
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    .f-info-socials a:last-child {
-      margin-right: 0;
-    }
-
-    .f-info-socials a:hover i {
-      color: #fe424d;
-      transform: translateY(-1px);
-    }
-
-    .f-info-brand {
-      font-weight: 500;
-      text-align: center;
-      flex: 1 1 auto;
-    }
-
-    .f-info-links {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .f-info-links .dot {
-      color: #aaa;
-    }
-
-    .footer-link-btn {
-      border: none;
-      background: transparent;
-      padding: 0;
-      margin: 0;
-      color: #555;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-
-    .footer-link-btn:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 576px) {
       .f-info {
-        flex-direction: column;
-        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+
+      .f-info-socials a,
+      .f-info-socials i {
+        color: #555;
+        margin-right: 0.6rem;
+        font-size: 1.3rem;
+        text-decoration: none;
+        transition: color 0.2s ease, transform 0.2s ease;
+      }
+
+      .f-info-socials a:last-child {
+        margin-right: 0;
+      }
+
+      .f-info-socials a:hover i {
+        color: #fe424d;
+        transform: translateY(-1px);
       }
 
       .f-info-brand {
-        order: 2;
-      }
-
-      .f-info-socials {
-        order: 1;
+        font-weight: 500;
+        text-align: center;
+        flex: 1 1 auto;
       }
 
       .f-info-links {
-        order: 3;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
       }
-    }
 
-    /* Modal backdrop */
-    .wl-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(3px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease-out;
-      z-index: 1040;
-    }
+      .f-info-links .dot {
+        color: #aaa;
+      }
 
-    /* Modal container */
-    .wl-modal {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      z-index: 1050;
-    }
+      .footer-link-btn {
+        border: none;
+        background: transparent;
+        padding: 0;
+        margin: 0;
+        color: #555;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
 
-    /* Modal card */
-    .wl-modal-content {
-      width: min(700px, 90vw);
-      max-height: 80vh;
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
-      transform: translateY(10px);
-      opacity: 0;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      pointer-events: auto;
-      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
-      font-size: 0.9rem;
-    }
+      .footer-link-btn:hover {
+        text-decoration: underline;
+      }
 
-    .wl-modal-header {
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid #eee;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+      @media (max-width: 576px) {
+        .f-info {
+          flex-direction: column;
+          text-align: center;
+        }
 
-    .wl-modal-header h5 {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: 600;
-      color: #222;
-    }
+        .f-info-brand {
+          order: 2;
+        }
 
-    .wl-modal-close {
-      border: none;
-      background: transparent;
-      font-size: 1.5rem;
-      line-height: 1;
-      cursor: pointer;
-      color: #777;
-    }
+        .f-info-socials {
+          order: 1;
+        }
 
-    .wl-modal-close:hover {
-      color: #000;
-    }
+        .f-info-links {
+          order: 3;
+        }
+      }
 
-    .wl-modal-body {
-      padding: 1.25rem 1.5rem 1.5rem;
-      overflow-y: auto;
-    }
+      .wl-modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(3px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease-out;
+        z-index: 1040;
+      }
 
-    .wl-modal-body h6 {
-      margin-top: 0.8rem;
-      margin-bottom: 0.25rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #222;
-    }
+      .wl-modal {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        z-index: 1050;
+      }
 
-    .wl-modal-body p {
-      margin: 0 0 0.6rem;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    .wl-modal-body ul {
-      padding-left: 1.1rem;
-      margin: 0.3rem 0 0.8rem;
-    }
-
-    .wl-modal-body li {
-      margin-bottom: 0.25rem;
-    }
-
-    .wl-modal-backdrop.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .wl-modal.active .wl-modal-content {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 576px) {
       .wl-modal-content {
-        width: 94vw;
-        max-height: 82vh;
-        border-radius: 12px;
+        width: min(700px, 90vw);
+        max-height: 80vh;
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+        transform: translateY(10px);
+        opacity: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        pointer-events: auto;
+        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        font-size: 0.9rem;
       }
-    }
-  </style>
-</head>
-<body>
-  <!-- Global navbar -->
-  <%- include("../includes/navbar.ejs") %>
 
-  <!-- Page content -->
-  <div class="container">
-    <%- include("../includes/flash.ejs") %>
-    <%- body %>
-  </div>
+      .wl-modal-header {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
 
-  <!-- Global footer (HTML in includes/footer.ejs) -->
-  <%- include("../includes/footer.ejs") %>
+      .wl-modal-header h5 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #222;
+      }
 
-  <!-- Modal overlay and container (shared for all pages) -->
-  <div class="wl-modal-backdrop" id="wlModalBackdrop"></div>
+      .wl-modal-close {
+        border: none;
+        background: transparent;
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #777;
+      }
 
-  <div class="wl-modal" id="wlModal">
-    <div class="wl-modal-content">
-      <div class="wl-modal-header">
-        <h5 id="wlModalTitle">Privacy Policy</h5>
-        <button type="button" class="wl-modal-close" id="wlModalClose">
-          &times;
-        </button>
-      </div>
+      .wl-modal-close:hover {
+        color: #000;
+      }
 
-      <div class="wl-modal-body" id="wlModalBody">
-        <!-- Content will be injected via JS -->
+      .wl-modal-body {
+        padding: 1.25rem 1.5rem 1.5rem;
+        overflow-y: auto;
+      }
+
+      .wl-modal-body h6 {
+        margin-top: 0.8rem;
+        margin-bottom: 0.25rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #222;
+      }
+
+      .wl-modal-body p {
+        margin: 0 0 0.6rem;
+        color: #555;
+        line-height: 1.5;
+      }
+
+      .wl-modal-body ul {
+        padding-left: 1.1rem;
+        margin: 0.3rem 0 0.8rem;
+      }
+
+      .wl-modal-body li {
+        margin-bottom: 0.25rem;
+      }
+
+      .wl-modal-backdrop.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .wl-modal.active .wl-modal-content {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 576px) {
+        .wl-modal-content {
+          width: 94vw;
+          max-height: 82vh;
+          border-radius: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Global navbar (fully responsive, from includes/navbar.ejs) -->
+    <%- include("../includes/navbar.ejs") %>
+
+    <!-- Page content -->
+    <div class="container mt-2">
+      <%- include("../includes/flash.ejs") %>
+      <%- body %>
+    </div>
+
+    <!-- Global footer -->
+    <%- include("../includes/footer.ejs") %>
+
+    <!-- Modal overlay and container -->
+    <div class="wl-modal-backdrop" id="wlModalBackdrop"></div>
+
+    <div class="wl-modal" id="wlModal">
+      <div class="wl-modal-content">
+        <div class="wl-modal-header">
+          <h5 id="wlModalTitle">Privacy Policy</h5>
+          <button type="button" class="wl-modal-close" id="wlModalClose">
+            &times;
+          </button>
+        </div>
+
+        <div class="wl-modal-body" id="wlModalBody">
+          <!-- Content will be injected via JS -->
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Bootstrap JS bundle -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"
-  ></script>
+    <!-- Bootstrap JS bundle -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- Custom scripts -->
-  <script src="/js/script.js"></script>
+    <!-- Custom scripts -->
+    <script src="/js/script.js"></script>
 
-  <!-- Modal behavior script -->
-  <script>
-    // Static content for Privacy modal
-    const privacyContent = `
-      <p>We value your privacy and are committed to protecting your personal information while you use Wanderlust.</p>
-      <h6>Information we collect</h6>
-      <p>We may collect account details, booking information, and usage data to keep the platform secure and improve your experience.</p>
-      <h6>How we use your data</h6>
-      <ul>
-        <li>To manage your account and bookings</li>
-        <li>To improve search, recommendations, and listings</li>
-        <li>To prevent fraud and maintain platform safety</li>
-      </ul>
-      <h6>Your choices</h6>
-      <p>You can request correction or deletion of your account data subject to legal and security requirements.</p>
-    `;
+    <!-- Modal behavior script -->
+    <script>
+      const privacyContent = `
+        <p>We value your privacy and are committed to protecting your personal information while you use Wanderlust.</p>
+        <h6>Information we collect</h6>
+        <p>We may collect account details, booking information, and usage data to keep the platform secure and improve your experience.</p>
+        <h6>How we use your data</h6>
+        <ul>
+          <li>To manage your account and bookings</li>
+          <li>To improve search, recommendations, and listings</li>
+          <li>To prevent fraud and maintain platform safety</li>
+        </ul>
+        <h6>Your choices</h6>
+        <p>You can request correction or deletion of your account data subject to legal and security requirements.</p>
+      `;
 
-    // Static content for Terms modal
-    const termsContent = `
-      <p>By using Wanderlust, you agree to use the platform responsibly and follow these terms.</p>
-      <h6>Using Wanderlust</h6>
-      <ul>
-        <li>Provide accurate information for your profile and bookings.</li>
-        <li>Respect hosts, guests, and local laws at all times.</li>
-      </ul>
-      <h6>Bookings & payments</h6>
-      <p>Each booking is a direct agreement between guest and host. Cancellations and refunds follow the policy shown at the time of booking.</p>
-      <h6>Safety</h6>
-      <p>Report suspicious messages, listings, or behaviour so our team can review and take action if needed.</p>
-    `;
+      const termsContent = `
+        <p>By using Wanderlust, you agree to use the platform responsibly and follow these terms.</p>
+        <h6>Using Wanderlust</h6>
+        <ul>
+          <li>Provide accurate information for your profile and bookings.</li>
+          <li>Respect hosts, guests, and local laws at all times.</li>
+        </ul>
+        <h6>Bookings & payments</h6>
+        <p>Each booking is a direct agreement between guest and host. Cancellations and refunds follow the policy shown at the time of booking.</p>
+        <h6>Safety</h6>
+        <p>Report suspicious messages, listings, or behaviour so our team can review and take action if needed.</p>
+      `;
 
-    const modal = document.getElementById("wlModal");
-    const backdrop = document.getElementById("wlModalBackdrop");
-    const modalTitle = document.getElementById("wlModalTitle");
-    const modalBody = document.getElementById("wlModalBody");
-    const btnPrivacy = document.getElementById("openPrivacy");
-    const btnTerms = document.getElementById("openTerms");
-    const btnClose = document.getElementById("wlModalClose");
+      const modal = document.getElementById("wlModal");
+      const backdrop = document.getElementById("wlModalBackdrop");
+      const modalTitle = document.getElementById("wlModalTitle");
+      const modalBody = document.getElementById("wlModalBody");
+      const btnPrivacy = document.getElementById("openPrivacy");
+      const btnTerms = document.getElementById("openTerms");
+      const btnClose = document.getElementById("wlModalClose");
 
-    function openModal(type) {
-      if (type === "privacy") {
-        modalTitle.textContent = "Privacy Policy";
-        modalBody.innerHTML = privacyContent;
-      } else {
-        modalTitle.textContent = "Terms of use";
-        modalBody.innerHTML = termsContent;
+      function openModal(type) {
+        if (type === "privacy") {
+          modalTitle.textContent = "Privacy Policy";
+          modalBody.innerHTML = privacyContent;
+        } else {
+          modalTitle.textContent = "Terms of use";
+          modalBody.innerHTML = termsContent;
+        }
+
+        backdrop.classList.add("active");
+        modal.classList.add("active");
       }
 
-      backdrop.classList.add("active");
-      modal.classList.add("active");
-    }
-
-    function closeModal() {
-      backdrop.classList.remove("active");
-      modal.classList.remove("active");
-    }
-
-    if (btnPrivacy) {
-      btnPrivacy.addEventListener("click", () => openModal("privacy"));
-    }
-
-    if (btnTerms) {
-      btnTerms.addEventListener("click", () => openModal("terms"));
-    }
-
-    if (btnClose) {
-      btnClose.addEventListener("click", closeModal);
-    }
-
-    if (backdrop) {
-      backdrop.addEventListener("click", closeModal);
-    }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeModal();
+      function closeModal() {
+        backdrop.classList.remove("active");
+        modal.classList.remove("active");
       }
-    });
-  </script>
-</body>
+
+      if (btnPrivacy) {
+        btnPrivacy.addEventListener("click", () => openModal("privacy"));
+      }
+
+      if (btnTerms) {
+        btnTerms.addEventListener("click", () => openModal("terms"));
+      }
+
+      if (btnClose) {
+        btnClose.addEventListener("click", closeModal);
+      }
+
+      if (backdrop) {
+        backdrop.addEventListener("click", closeModal);
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
 </html>
