@@ -1,74 +1,75 @@
 🧭 WanderLust – Travel Stay Platform (Airbnb Clone)
-Connect. Discover. Stay. WanderLust is a full‑stack travel accommodation platform inspired by Airbnb, where users can browse, list, and manage stays across the globe.
+Connect. Discover. Stay.
+WanderLust is a modern full‑stack travel accommodation platform inspired by Airbnb, where users can browse, list, and manage stays worldwide with a smooth, responsive UI.
 
-🟢 All features are live, stable, and deployed in production.
+🟢 All core features are live, stable, and running in production.
 
 🌐 Live Application
 Service	URL	Status
 🏡 Main App	https://wanderlustproject.onrender.com	✅ Live
 📦 API Server	https://wanderlustproject.onrender.com (same Express backend)	✅ Live
-⚠️ Note: Backend is hosted on Render free tier – first request may take 30–60 seconds cold‑start time.
+⚠️ Note: Backend is hosted on Render free tier – the first request may take 30–60 seconds due to cold‑start.
 
 👨‍💻 Developer
 Member	Responsibility	Status
 Somesh Pandey	Full‑stack Development & Deployment	✅ Complete
 📍 Location: Lucknow, Uttar Pradesh, India
 
-🎓 Education: Apna College Delta Batch (MERN Stack)
+🎓 Education: Apna College – Delta Batch (MERN Stack)
 
 📦 Project Overview
-WanderLust is a MERN‑based travel listing application that lets users:
+WanderLust is a MERN‑based travel listing application that allows users to:
 
-Browse and search stays by category, price, and location
+🔍 Browse and search stays by category, price, and location
 
-View detailed listing pages with photos, maps, and reviews
+🏠 View detailed listing pages with photos, maps, and reviews
 
-Create, edit, and delete their own listings
+✏️ Create, edit, and delete their own listings
 
-Add reviews and manage favorites
+⭐ Add reviews and manage favorites
 
-Securely authenticate and manage accounts
+🔐 Securely authenticate and manage user accounts
 
 🎨 Frontend
 Stack: EJS, Bootstrap 5, Vanilla JS, Mapbox, Font Awesome
 
-Purpose: Clean, responsive UI inspired by Airbnb, optimized for mobile and desktop.
+Goal: A clean, Airbnb‑inspired UI that works beautifully on both mobile and desktop.
 
-Key UI Features
-Fully responsive navbar with search, filters, and mobile drawer menu
+UI Highlights
+✅ Fully responsive navbar with search, filters, and mobile drawer‑style menu
 
-Category filters with horizontal scroll (mobile friendly)
+✅ Category filters with smooth horizontal scroll on mobile
 
-Listing cards with price, image, and favorite (heart) support
+✅ Listing cards with image, price, and heart‑icon favorites
 
-Detailed listing pages with map, reviews, and host info
+✅ Detailed listing pages with map, reviews, and host/location details
 
-Auth pages (Login/Signup) with modern card design and validation
+✅ Modern Login/Signup pages with card layout & client‑side validation
 
-Flash messages for success/error states
+✅ Global flash messages for success and error states
 
 ⚙️ Backend
-Stack: Node.js, Express, MongoDB, Mongoose, Passport / JWT (as per your implementation), Cloudinary, Mapbox
+Stack: Node.js, Express, MongoDB, Mongoose, Passport / JWT, Cloudinary, Mapbox
 
-Purpose: Secure RESTful API + server‑side rendered pages.
+Goal: Secure, scalable backend powering server‑side rendered pages and REST APIs.
 
-Key Backend Features
-User authentication (register, login, logout)
+Backend Features
+🔐 User auth: register, login, logout, protected routes
 
-Protected routes for creating/editing/deleting listings
+🏠 Listing management: create, update, delete listings (only by owner)
 
-Review system (create/delete reviews)
+📝 Review system: add/delete reviews per listing
 
-Favorites system with toggle API
+❤️ Favorites system: per‑user favorites with toggle API
 
-Cloudinary integration for image upload
+☁️ Cloudinary integration: secure image upload & storage
 
-Mapbox for geocoding and interactive maps
+🗺️ Mapbox integration: geocoding + interactive maps on listing pages
 
-Robust validation and error handling
+🧯 Strong validation & error handling throughout the stack
 
 🚀 Quick Start (Local Setup)
-Prerequisites
+✅ Prerequisites
 Node.js 16+
 
 MongoDB (local or Atlas)
@@ -84,10 +85,9 @@ cd WanderLust
 2️⃣ Install Dependencies
 bash
 npm install
-(If you separated frontend assets via another build step, add that here.)
-
+# agar frontend build step alag hai, yahan mention karein
 3️⃣ Environment Variables
-Create a .env file in the project root:
+Project root mein .env file banayein:
 
 text
 PORT=8080
@@ -99,14 +99,14 @@ CLOUDINARY_API_SECRET=your_api_secret
 
 MAPBOX_TOKEN=your_mapbox_token
 SESSION_SECRET=your_session_secret
-🔒 Security: Never commit .env files. Configure environment variables directly on Render.
+🔒 Security Tip: .env file kabhi commit na karein. Render / deployment platform par env vars configure karein.
 
 4️⃣ Run the App
 bash
 npm start
-# or if you use nodemon:
+# ya
 # nodemon app.js
-Local URL: http://localhost:8080
+Local dev URL: http://localhost:8080
 
 🔧 Tech Stack
 Layer	Technology
@@ -115,40 +115,40 @@ Backend	Node.js, Express.js
 Database	MongoDB Atlas (Mongoose ODM)
 Auth	Passport / JWT (username‑password with hashing)
 Storage	Cloudinary (listing images)
-Deployment	Render (full Express app)
+Deploy	Render (Express app + static assets)
 Utilities	Joi, Multer, dotenv, connect‑flash, express‑session, method‑override, etc.
-(List exactly those packages you’re using.)
+(Is table me sirf wahi packages rakho jo tum actually use kar rahe ho.)
 
 🔌 Main Features
-Authentication & Users
+👤 Authentication & Users
 Register, login, logout
 
-Password hashing and secure sessions
+Password hashing and secure session handling
 
-Flash messages for login/signup errors
+Helpful flash messages for login/signup errors
 
-Listings
-Create, edit, delete listings
+🏠 Listings
+Create, edit, delete listings (owner‑only operations)
 
-Upload images to Cloudinary
+Upload listing images via Cloudinary
 
-Category‑based filtering (Trending, Rooms, Mountains, etc.)
+Category‑based filters (Trending, Rooms, Mountains, Castles, etc.)
 
-Price display with optional show GST toggle
+Optional “show GST” toggle to display price with tax
 
-Favorites & Reviews
-Heart‑icon favorites per user
+❤️ Favorites & Reviews
+Per‑user heart‑icon favorites
 
-Favorites page with quick listing access
+Dedicated favorites page for quick access
 
-Add/delete reviews on listings
+Add/delete reviews on listing detail page
 
-Maps & Location
-Mapbox map on listing show page
+🗺️ Maps & Location
+Interactive Mapbox map on listing show page
 
-Geocoding of location to coordinates
+Geocoding from location string → coordinates
 
-📁 Project Structure (Example)
+📁 Project Structure
 text
 WanderLust/
 ├── app.js
@@ -179,49 +179,44 @@ WanderLust/
 ├── public/
 │   ├── css/
 │   └── js/
-└── .env (local only)
+└── .env           # local only
 🌳 Git Workflow (Suggested)
 main → Production branch (deployed to Render)
 
-feature/* → New features and enhancements
+feature/* → Feature branches
 
-Commit prefixes:
+Commit conventions:
 
 feat: new feature
 
 fix: bug fix
 
-style: UI / CSS only
+style: UI / CSS / formatting
 
-refactor: code improvements
+refactor: internal code changes
 
-docs: README / documentation
+docs: README / docs updates
 
 🔒 Security Highlights
-Password hashing (e.g., bcrypt)
+🔑 Password hashing (e.g. bcrypt)
 
-Input validation with Joi / custom validation
+✅ Input validation (Joi / custom middlewares)
 
-Session security and cookie configuration
+🔐 Secure sessions & cookie config
 
-File upload type and size validation (for images)
+🖼️ File upload type & size validation (images only)
 
-Environment variables for secrets and keys
+🧾 Sensitive values stored in environment variables, not in code
 
 📞 Contact & Support
 Somesh Pandey
 
-📧 Email: sp5368@gmail.com
+📧 Email: spandey5368@gmail.com
 
 💼 GitHub: @somesh5368
 
 📍 Lucknow, Uttar Pradesh, India
 
-Project Repository: https://github.com/<your-username>/WanderLust
-Live App: https://wanderlustproject.onrender.com
+🗂️ Project Repository: https://github.com/somesh5368/WanderLust
 
-📝 License
-This project is for educational and portfolio purposes.
-Academic Project | 2026
-
-<div align="center"> Built with ❤️ by Somesh Pandey <br/> ⭐ Star this repo if you find it helpful! </div>
+🌐 Live App: https://wanderlustproject.onrender.com
